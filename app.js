@@ -4,6 +4,15 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+const connection = require('./database/connection');
+connection.query('SELECT 1', (err, results) => {
+  if (err) {
+      console.log("Error connecting to database:", err);
+      return;
+  }
+  console.log("Successfully connected to database!");
+});
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
