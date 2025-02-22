@@ -1,9 +1,63 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
+</head>
+<body>
     <h1><%= title %></h1>
-  </body>
+    <nav>
+        <a href="/" class="active">Home</a>
+        <a href="/list">List of Recipes</a>
+        <a href="/recipe">Recipe</a>
+        <a href="/addrecipe">Add Recipe</a>
+      </nav>
+
+    <div class="recipe-selector">
+        <select id="recipeSelect">
+            <option value="">Select a Recipe</option>
+            <% recipes.forEach(recipe => { %>
+                <option value="<%= recipe.id %>" 
+                    <%= selectedRecipe && selectedRecipe.id === recipe.id ? 'selected' : '' %>>
+                    <%= recipe.name %>
+                </option>
+            <% }); %>
+        </select>
+        <button onclick="viewRecipe()">View Recipe</button>
+    </div>
+
+    <% if (selectedRecipe) { %>
+        <div class="recipe-details">
+            <h2><%= selectedRecipe.name %></h2>
+            <p><%= selectedRecipe.description %></p>
+            <p>Cooking Time: <%= selectedRecipe.cooking_time %></p>
+
+            <div class="ingredients-section">
+                <h3>Ingredients</h3>
+                <ul>
+                    <% selectedRecipe.ingredients.forEach(ingredient => { %>
+                        <li>
+                            <%= ingredient.quantity %> <%= ingredient.unit %> <%= ingredient.name %>
+                        </li>
+                    <% }); %>
+                </ul>
+            </div>
+
+            <div class="instructions-section">
+                <h3>Instructions</h3>
+                <p><%= selectedRecipe.instructions %></p>
+            </div>
+        </div>
+    <% } %>
+
+    <script>
+    function viewRecipe() {
+        const select = document.getElementById('recipeSelect');
+        const selectedId = select.value;
+        if (selectedId) {
+            window.location.href = `/recipe/${selectedId}`;
+        }
+    }
+    </script>
+</body>
+</html>

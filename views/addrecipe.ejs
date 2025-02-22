@@ -1,9 +1,100 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
+<head>
+    <title>Add New Recipe</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-  </body>
+</head>
+<body>
+    <h1>Add New Recipe</h1>
+    <nav>
+        <a href="/" class="active">Home</a>
+        <a href="/list">List of Recipes</a>
+        <a href="/recipe">Recipe</a>
+        <a href="/addrecipe">Add Recipe</a>
+      </nav>
+
+    <form id="addRecipeForm" action="/addrecipe" method="POST">
+        <!-- Recipe Basic Details -->
+        <section class="recipe-details">
+            <h2>Recipe Details</h2>
+            
+            <div class="form-group">
+                <label for="name">Recipe Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="protein_category">Protein Category:</label>
+                <select id="protein_category" name="protein_category" required>
+                    <option value="">Select Category</option>
+                    <option value="Chicken">Chicken</option>
+                    <option value="Beef">Beef</option>
+                    <option value="Tofu">Tofu</option>
+                    <option value="Grains">Grains</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="cooking_time">Cooking Time:</label>
+                <input type="text" id="cooking_time" name="cooking_time" placeholder="e.g., 30 minutes" required>
+            </div>
+
+            <div class="form-group">
+                <label for="instructions">Instructions:</label>
+                <textarea id="instructions" name="instructions" placeholder="Enter step-by-step instructions" required></textarea>
+            </div>
+        </section>
+
+        <!-- Ingredients Section -->
+        <section class="ingredients-section">
+            <h2>Ingredients</h2>
+            <div id="ingredients-container">
+                <div class="ingredient-entry">
+                    <select name="ingredients" required>
+                        <option value="">Select Ingredient</option>
+                        <% ingredients.forEach(ingredient => { %>
+                            <option value="<%= ingredient.id %>"><%= ingredient.name %></option>
+                        <% }); %>
+                    </select>
+                    <input type="text" name="quantities" placeholder="Quantity" required>
+                    <input type="text" name="units" placeholder="Unit" required>
+                    <button type="button" class="remove-ingredient">Remove</button>
+                </div>
+            </div>
+            <button type="button" id="add-ingredient">Add Another Ingredient</button>
+        </section>
+
+        <!-- Submit Button -->
+        <div class="form-actions">
+            <button type="submit">Add Recipe</button>
+            <button type="button" onclick="window.location.href='/list'">Cancel</button>
+        </div>
+    </form>
+
+    <script>
+    document.getElementById('add-ingredient').addEventListener('click', function() {
+        const container = document.getElementById('ingredients-container');
+        const newIngredient = container.children[0].cloneNode(true);
+        // Clear the values
+        newIngredient.querySelectorAll('input').forEach(input => input.value = '');
+        newIngredient.querySelector('select').selectedIndex = 0;
+        container.appendChild(newIngredient);
+    });
+
+    // Remove ingredient functionality
+    document.getElementById('ingredients-container').addEventListener('click', function(e) {
+        if (e.target.classList.contains('remove-ingredient')) {
+            const ingredients = document.getElementsByClassName('ingredient-entry');
+            if (ingredients.length > 1) {
+                e.target.parentElement.remove();
+            }
+        }
+    });
+    </script>
+</body>
+</html>

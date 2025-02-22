@@ -6,6 +6,12 @@
 </head>
 <body>
     <h1><%= title %></h1>
+    <nav>
+        <a href="/" class="active">Home</a>
+        <a href="/list">List of Recipes</a>
+        <a href="/recipe">Recipe</a>
+        <a href="/addrecipe">Add Recipe</a>
+      </nav>
     <button onclick="location.reload()">Refresh Recipe List</button>
 
     <% Object.keys(recipesByCategory).forEach(category => { %>
