@@ -15,6 +15,9 @@ connection.query('SELECT 1', (err, results) => {
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var listRouter = require('./routes/list');
+var recipeRouter = require('./routes/recipe');
+var addRouter = require('./routes/addrecipe');
 
 var app = express();
 
@@ -29,7 +32,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/list', listRouter);
+app.use('/recipe', recipeRouter);
 app.use('/users', usersRouter);
+app.use('/add', addRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

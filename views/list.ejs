@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+    <h1><%= title %></h1>
+    <button onclick="location.reload()">Refresh Recipe List</button>
+
+    <% Object.keys(recipesByCategory).forEach(category => { %>
+        <section class="category-section">
+            <h2><%= category %> Recipes</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Recipe Name</th>
+                        <th>Description</th>
+                        <th>Cooking Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% recipesByCategory[category].forEach(recipe => { %>
+                        <tr>
+                            <td><%= recipe.name %></td>
+                            <td><%= recipe.description %></td>
+                            <td><%= recipe.cooking_time %></td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </section>
+    <% }); %>
+
+</body>
+</html>
