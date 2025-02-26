@@ -29,9 +29,7 @@ npm install
 
 Open MySQL Workbench and connect to your local MySQL server (after installing MySQL, you will be able to start the server during installation and get credentials for later use). 
 
-Download the following template sql script and paste its contents in a tab inside the workbench. Running this will create the database and populate it with the neccesary tables and values in order for your site to display the recipes properly.
-
-SQL Template: [database.sql](./database.sql)
+Open up MySQL Workbench. Paste the contents of the RecipeTemplate.sql file in the root directory into a tab in the workbench and run the file. This will create the database schema, create the tables, and insert base values in order for you to view them on the site.
 
 Configure environment variables
 
