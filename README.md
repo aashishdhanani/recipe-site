@@ -56,4 +56,18 @@ Open your browser and navigate to:
 http://127.0.0.1:3000/
 ```
 
+## Using the Website:
+Browsing Recipes:
+- Navigate to "List of Recipes" to view recipes categorized by protein type
+
+Viewing Recipe Details:
+- Navigate to the "Recipe" page and select a recipe from the dropdown menu
+- Click "View Recipe" to see details
+
+Adding Recipes
+- Navigate to "Add Recipe"
+- Fill out the form
+- Submit the form. This will add the recipe to your database and you will be able to view it on the other pages
+
+
 
