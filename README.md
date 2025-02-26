@@ -31,7 +31,7 @@ Open MySQL Workbench and connect to your local MySQL server (after installing My
 
 Download the following template sql script and paste its contents in a tab inside the workbench. Running this will create the database and populate it with the neccesary tables and values in order for your site to display the recipes properly.
 
-insert the RecipeTemplate.sql file here
+SQL Template: [database.sql](./database.sql)
 
 Configure environment variables
 
