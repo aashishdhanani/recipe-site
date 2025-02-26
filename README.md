@@ -10,9 +10,9 @@ A dynamic recipe website built with Express.js, EJS templating, and MySQL. This 
 
 ## Prerequisites
 Before you begin, install the following:
-1. [Node.js] (https://nodejs.org/en/download)
-2. [MySQL] (https://dev.mysql.com/downloads/installer/)
-3. [MySQL Workbench] (https://dev.mysql.com/downloads/workbench/)
+1. [Node.js](https://nodejs.org/en/download)
+2. [MySQL](https://dev.mysql.com/downloads/installer/)
+3. [MySQL Workbench](https://dev.mysql.com/downloads/workbench/)
 
 ## Getting Started
 
