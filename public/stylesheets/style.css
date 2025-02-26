@@ -1,8 +1,237 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-a {
-  color: #00B7FF;
+body {
+  font-family: 'Georgia', serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f9f5f0;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  color: #8b4513;
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  text-align: center;
+  border-bottom: 2px solid #d9b38c;
+  padding-bottom: 10px;
+}
+
+h2, h3 {
+  color: #8b4513;
+  margin: 20px 0 10px 0;
+}
+
+p {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+nav {
+  background-color: #8b4513;
+  padding: 10px;
+  margin-bottom: 30px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+nav a {
+  color: #f9f5f0;
+  text-decoration: none;
+  padding: 10px 15px;
+  margin: 0 5px;
+  border-radius: 3px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+nav a:hover {
+  background-color: #d9b38c;
+  color: #333;
+}
+
+nav a.active {
+  background-color: #d9b38c;
+  color: #333;
+}
+
+img {
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  float: left;
+  margin: 0 20px 20px 0;
+}
+
+ol {
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+ol li {
+  margin-bottom: 10px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #8b4513;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d9b38c;
+  border-radius: 4px;
+  font-family: inherit;
+  background-color: #fff;
+}
+
+textarea {
+  min-height: 100px;
+}
+
+button {
+  background-color: #8b4513;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #d9b38c;
+  color: #333;
+}
+
+.recipe-details, .ingredients-section, .instructions-section {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.ingredient-item {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  border-bottom: 1px dotted #8b4513;
+  color: #8b4513;
+}
+
+.tooltip {
+  visibility: hidden;
+  width: 250px;
+  background-color: #8b4513;
+  color: #fff;
+  text-align: left;
+  border-radius: 6px;
+  padding: 10px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -125px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 14px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #8b4513 transparent transparent transparent;
+}
+
+.ingredient-item:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.category-section {
+  margin-bottom: 30px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+th {
+  background-color: #8b4513;
+  color: white;
+  text-align: left;
+  padding: 12px;
+}
+
+td {
+  padding: 10px;
+  border-bottom: 1px solid #d9b38c;
+}
+
+tr:hover {
+  background-color: #f5ebe1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  img {
+    float: none;
+    display: block;
+    margin: 0 auto 20px auto;
+  }
+  
+  nav a {
+    display: block;
+    margin: 10px 0;
+  }
+}
+.content-container {
+  clear: both;
+  overflow: hidden;
+}
+
+img {
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  float: left;
+  margin: 0 20px 20px 0;
+}
+
+ol {
+  clear: both; 
+  margin-left: 20px;
+  margin-bottom: 20px;
+  padding-top: 10px; 
+}
+
+ol li {
+  margin-bottom: 10px;
 }

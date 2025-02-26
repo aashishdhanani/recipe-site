@@ -3,56 +3,14 @@
 <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <style>
-        /* Tooltip styling */
-        .ingredient-item {
-            position: relative;
-            display: inline-block;
-            cursor: pointer;
-            border-bottom: 1px dotted #000;
-        }
-        
-        .tooltip {
-            visibility: hidden;
-            width: 250px;
-            background-color: #555;
-            color: #fff;
-            text-align: left;
-            border-radius: 6px;
-            padding: 10px;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -125px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            font-size: 14px;
-        }
-        
-        .tooltip::after {
-            content: "";
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-            border-color: #555 transparent transparent transparent;
-        }
-        
-        .ingredient-item:hover .tooltip {
-            visibility: visible;
-            opacity: 1;
-        }
-    </style>
+    
 </head>
 <body>
     <h1><%= title %></h1>
     <nav>
-        <a href="/" class="active">Home</a>
+        <a href="/" >Home</a>
         <a href="/list">List of Recipes</a>
-        <a href="/recipe">Recipe</a>
+        <a href="/recipe"class="active">Recipe</a>
         <a href="/addrecipe">Add Recipe</a>
     </nav>
     <div class="recipe-selector">

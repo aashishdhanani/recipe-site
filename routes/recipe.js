@@ -2,9 +2,7 @@ var express = require('express');
 var router = express.Router();
 const connection = require('../database/connection');
 
-/* GET recipe page with dropdown */
 router.get('/', function(req, res, next) {
-    // Get all recipes for dropdown
     const query = "SELECT id, name FROM recipes";
     
     connection.query(query, (err, recipes) => {
@@ -22,14 +20,11 @@ router.get('/', function(req, res, next) {
     });
 });
 
-/* GET specific recipe when selected */
 router.get('/:id', function(req, res, next) {
     const recipeId = req.params.id;
     
-    // First query to get all recipes for dropdown
     const recipesQuery = "SELECT id, name FROM recipes";
     
-    // Second query to get specific recipe details
     const recipeQuery = `
         SELECT r.*, 
             i.id as ingredient_id,
@@ -44,7 +39,6 @@ router.get('/:id', function(req, res, next) {
         LEFT JOIN ingredients i ON ri.ingredient_id = i.id
         WHERE r.id = ?`;
 
-    // Run both queries
     connection.query(recipesQuery, (err, recipes) => {
         if (err) {
             return res.status(500).render('error', { message: 'Error fetching recipes' });
