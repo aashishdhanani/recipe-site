@@ -3,6 +3,49 @@
 <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <style>
+        /* Tooltip styling */
+        .ingredient-item {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            border-bottom: 1px dotted #000;
+        }
+        
+        .tooltip {
+            visibility: hidden;
+            width: 250px;
+            background-color: #555;
+            color: #fff;
+            text-align: left;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -125px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 14px;
+        }
+        
+        .tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+        
+        .ingredient-item:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
     <h1><%= title %></h1>
@@ -11,8 +54,7 @@
         <a href="/list">List of Recipes</a>
         <a href="/recipe">Recipe</a>
         <a href="/addrecipe">Add Recipe</a>
-      </nav>
-
+    </nav>
     <div class="recipe-selector">
         <select id="recipeSelect">
             <option value="">Select a Recipe</option>
@@ -25,31 +67,34 @@
         </select>
         <button onclick="viewRecipe()">View Recipe</button>
     </div>
-
     <% if (selectedRecipe) { %>
         <div class="recipe-details">
             <h2><%= selectedRecipe.name %></h2>
             <p><%= selectedRecipe.description %></p>
             <p>Cooking Time: <%= selectedRecipe.cooking_time %></p>
-
             <div class="ingredients-section">
                 <h3>Ingredients</h3>
                 <ul>
                     <% selectedRecipe.ingredients.forEach(ingredient => { %>
                         <li>
-                            <%= ingredient.quantity %> <%= ingredient.unit %> <%= ingredient.name %>
+                            <span class="ingredient-item">
+                                <%= ingredient.quantity %> <%= ingredient.unit %> <%= ingredient.name %>
+                                <span class="tooltip">
+                                    <strong>Origin:</strong> <%= ingredient.origin %><br>
+                                    <strong>Safety Tips:</strong> <%= ingredient.safety_tips %><br>
+                                    <strong>Fun Fact:</strong> <%= ingredient.interesting_fact %>
+                                </span>
+                            </span>
                         </li>
                     <% }); %>
                 </ul>
             </div>
-
             <div class="instructions-section">
                 <h3>Instructions</h3>
                 <p><%= selectedRecipe.instructions %></p>
             </div>
         </div>
     <% } %>
-
     <script>
     function viewRecipe() {
         const select = document.getElementById('recipeSelect');

@@ -14,7 +14,6 @@
       </nav>
 
     <form id="addRecipeForm" action="/addrecipe" method="POST">
-        <!-- Recipe Basic Details -->
         <section class="recipe-details">
             <h2>Recipe Details</h2>
             
@@ -50,7 +49,6 @@
             </div>
         </section>
 
-        <!-- Ingredients Section -->
         <section class="ingredients-section">
             <h2>Ingredients</h2>
             <div id="ingredients-container">
@@ -69,7 +67,6 @@
             <button type="button" id="add-ingredient">Add Another Ingredient</button>
         </section>
 
-        <!-- Submit Button -->
         <div class="form-actions">
             <button type="submit">Add Recipe</button>
             <button type="button" onclick="window.location.href='/list'">Cancel</button>
@@ -80,13 +77,11 @@
     document.getElementById('add-ingredient').addEventListener('click', function() {
         const container = document.getElementById('ingredients-container');
         const newIngredient = container.children[0].cloneNode(true);
-        // Clear the values
         newIngredient.querySelectorAll('input').forEach(input => input.value = '');
         newIngredient.querySelector('select').selectedIndex = 0;
         container.appendChild(newIngredient);
     });
 
-    // Remove ingredient functionality
     document.getElementById('ingredients-container').addEventListener('click', function(e) {
         if (e.target.classList.contains('remove-ingredient')) {
             const ingredients = document.getElementsByClassName('ingredient-entry');
@@ -95,6 +90,83 @@
             }
         }
     });
+    </script>
+    <script>
+        document.getElementById('addRecipeForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            let valid = true;
+            let errorMessage = '';
+            
+            const name = document.getElementById('name').value.trim();
+            const description = document.getElementById('description').value.trim();
+            const category = document.getElementById('protein_category').value;
+            const cookingTime = document.getElementById('cooking_time').value.trim();
+            const instructions = document.getElementById('instructions').value.trim();
+            
+            if (name === '') {
+                valid = false;
+                errorMessage += 'Recipe name is required\n';
+            }
+            
+            if (description === '' || description.length < 10) {
+                valid = false;
+                errorMessage += 'Please provide a description (at least 10 characters)\n';
+            }
+            
+            if (category === '') {
+                valid = false;
+                errorMessage += 'Please select a protein category\n';
+            }
+            
+            if (cookingTime === '') {
+                valid = false;
+                errorMessage += 'Cooking time is required\n';
+            }
+            
+            if (instructions === '' || instructions.length < 20) {
+                valid = false;
+                errorMessage += 'Please provide detailed instructions (at least 20 characters)\n';
+            }
+            
+            const ingredientSelects = document.querySelectorAll('select[name="ingredients"]');
+            let hasIngredient = false;
+            
+            ingredientSelects.forEach(select => {
+                if (select.value !== '') {
+                    hasIngredient = true;
+                }
+            });
+            
+            if (!hasIngredient) {
+                valid = false;
+                errorMessage += 'Please select at least one ingredient\n';
+            }
+            
+            const quantities = document.querySelectorAll('input[name="quantities"]');
+            const units = document.querySelectorAll('input[name="units"]');
+            
+            for (let i = 0; i < ingredientSelects.length; i++) {
+                if (ingredientSelects[i].value !== '') {
+                    if (quantities[i].value.trim() === '') {
+                        valid = false;
+                        errorMessage += 'Please provide a quantity for all ingredients\n';
+                        break;
+                    }
+                    if (units[i].value.trim() === '') {
+                        valid = false;
+                        errorMessage += 'Please provide a unit for all ingredients\n';
+                        break;
+                    }
+                }
+            }
+            
+            if (!valid) {
+                alert('Please fix the following errors:\n\n' + errorMessage);
+            } else {
+                this.submit();
+            }
+        });
     </script>
 </body>
 </html>

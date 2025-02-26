@@ -32,9 +32,13 @@ router.get('/:id', function(req, res, next) {
     // Second query to get specific recipe details
     const recipeQuery = `
         SELECT r.*, 
-               i.name as ingredient_name, 
-               ri.quantity, 
-               ri.unit
+            i.id as ingredient_id,
+            i.name as ingredient_name, 
+            i.origin as ingredient_origin,
+            i.safety_tips as ingredient_safety_tips,
+            i.interesting_fact as ingredient_interesting_fact,
+            ri.quantity, 
+            ri.unit
         FROM recipes r
         LEFT JOIN recipe_ingredients ri ON r.id = ri.recipe_id
         LEFT JOIN ingredients i ON ri.ingredient_id = i.id
@@ -64,7 +68,10 @@ router.get('/:id', function(req, res, next) {
                 ingredients: results.map(row => ({
                     name: row.ingredient_name,
                     quantity: row.quantity,
-                    unit: row.unit
+                    unit: row.unit,
+                    origin: row.ingredient_origin,
+                    safety_tips: row.ingredient_safety_tips,
+                    interesting_fact: row.ingredient_interesting_fact
                 }))
             };
 
