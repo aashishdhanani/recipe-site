@@ -1,1 +1,59 @@
-# recipe-site
+# RecipeHub
+
+A dynamic recipe website built with Express.js, EJS templating, and MySQL. This project allows users to browse recipes by protein categories, view detailed recipes with interactive ingreident information, and add new recipes.
+
+## Features
+- Home page with cooking experience and quick introduction
+- Recipe listing page categorized by protein type
+- Detailed recipe view with ingredient hover information
+- Form to add new recipes with client-side validation
+
+## Prerequisites
+Before you begin, install the following:
+1. [Node.js] (https://nodejs.org/en/download)
+2. [MySQL] (https://dev.mysql.com/downloads/installer/)
+3. [MySQL Workbench] (https://dev.mysql.com/downloads/workbench/)
+
+## Getting Started
+
+Clone the repo and open up the project in your IDE.
+```
+git clone https://github.com/aashishdhanani/recipe-site.git
+```
+
+Install Dependencies
+
+```
+npm install
+```
+
+Open MySQL Workbench and connect to your local MySQL server (after installing MySQL, you will be able to start the server during installation and get credentials for later use). 
+
+Download the following template sql script and paste its contents in a tab inside the workbench. Running this will create the database and populate it with the neccesary tables and values in order for your site to display the recipes properly.
+
+insert the RecipeTemplate.sql file here
+
+Configure environment variables
+
+Create a ```.env``` file in the root directory with the following content:
+
+```
+DATABASE_HOST=localhost
+DATABASE_USER=your_mysql_username
+DATABASE_PASSWORD=your_mysql_password
+DATABASE_NAME=recipe_site
+```
+
+Running the application
+
+```
+npm start
+```
+
+Open your browser and navigate to:
+
+```
+http://127.0.0.1:3000/
+```
+
+
